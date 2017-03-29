@@ -1,4 +1,7 @@
-When attempting to mock the uuid library the mock works when the method is called local to the required file, but not when called in a dependency of the required file
+When trying to replace the uuid library:
+Calls local to the test return what I expect, but calls from the module under test do not.
+
+An issue has been opened against the testdouble library here: https://github.com/testdouble/testdouble.js/issues/225
 
 Test Output:
 ```
