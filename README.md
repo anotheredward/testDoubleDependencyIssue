@@ -1,7 +1,7 @@
 When trying to replace the uuid library:
 Calls local to the test return what I expect, but calls from the module under test do not.
 
-An issue has been opened against the testdouble library here: https://github.com/testdouble/testdouble.js/issues/225
+Correction for code can be found here: https://github.com/testdouble/testdouble.js/issues/225
 
 Test Output:
 ```
