@@ -2,13 +2,15 @@
 /* global describe, it, beforeEach, afterEach */
 
 const assert = require('assert')
-const getUuid = require('./getUuid')
 const td = require('testdouble')
-const uuidMock = td.replace('uuid')
 const uuidString = '12345678-1234-4123-1234-123456789012'
 
 describe('getUuid', function () {
+  var uuidMock, getUuid
   beforeEach(function () {
+    uuidMock = td.replace('uuid')
+    getUuid = require('./getUuid')
+
     td.when(uuidMock.v4()).thenReturn(uuidString)
   })
 
