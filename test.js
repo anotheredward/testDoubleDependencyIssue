@@ -6,11 +6,10 @@ const td = require('testdouble')
 const uuidString = '12345678-1234-4123-1234-123456789012'
 
 describe('getUuid', function () {
-  var uuidMock, getUuid, getUuidIndirectly
+  var uuidMock, getUuid
   beforeEach(function () {
     uuidMock = td.replace('uuid')
     getUuid = require('./getUuid')
-    getUuidIndirectly = require('./getUuidIndirectly')
 
     td.when(uuidMock.v4()).thenReturn(uuidString)
   })
@@ -25,7 +24,11 @@ describe('getUuid', function () {
     return assert.equal(result, uuidString)
   })
 
-  it('call from required dependency of the required dependency should return the mocked value', function () {
+  it('call should be mocked when it is a dependency of the module under test', function () {
+    const getUuidMock = td.replace('./getUuid')
+    td.when(getUuidMock()).thenReturn(uuidString)
+    const getUuidIndirectly = require('./getUuidIndirectly')
+
     const result = getUuidIndirectly()
     return assert.equal(result, uuidString)
   })
