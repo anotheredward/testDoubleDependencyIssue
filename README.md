@@ -1,7 +1,7 @@
 When trying to replace the uuid library:
-Calls local to the test return what I expect, but calls from the module under test do not.
+Calls local to the test return what I expect, calls with one layer of indirection work, but as soon as we have two layers of indirection things stop working properly
 
-Correction for code can be found here: https://github.com/testdouble/testdouble.js/issues/225
+Original issue has been fixed according to: https://github.com/testdouble/testdouble.js/issues/225
 
 Test Output:
 ```
@@ -12,19 +12,14 @@ Test Output:
 
   getUuid
     ✓ local call should return the mocked value
-    1) call from required dependency should return the mocked value
+    ✓ call from required dependency should return the mocked value
+    1) call from required dependency of the required dependency should return the mocked value
 
 
-  1 passing (16ms)
+  2 passing (45ms)
   1 failing
 
-  1) getUuid call from required dependency should return the mocked value:
-
-      AssertionError: 'dee470e3-855e-4a8c-88e6-e22435ede224' == '12345678-1234-4123-1234-123456789012'
-      + expected - actual
-
-      -dee470e3-855e-4a8c-88e6-e22435ede224
-      +12345678-1234-4123-1234-123456789012
-
-      at Context.<anonymous> (test.js:22:19)
+  1) getUuid call from required dependency of the required dependency should return the mocked value:
+     AssertionError: undefined == '12345678-1234-4123-1234-123456789012'
+      at Context.<anonymous> (test.js:30:19)
 ```
