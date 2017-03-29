@@ -1,0 +1,15 @@
+{
+  "name": "testdoubledependencyissue",
+  "version": "1.0.0",
+  "description": "repro of an issue with mocking dependencies in the testdouble library",
+  "dependencies": {
+    "testdouble": "2.1.1",
+    "uuid": "3.0.1",
+    "mocha": "3.2.0"
+  },
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "author": "Ed Robinson",
+  "license": "ISC"
+}
